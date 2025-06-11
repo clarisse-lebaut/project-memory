@@ -1,16 +1,27 @@
+import { useState } from "react";
 import ImageComposant from "../cards/imgComposants";
-import { cardImage } from "../services/imageCardService";
+import { cardImage as initialCardImage } from "../services/imageCardService";
 
 function CardBoard() {
+  const [cards, setCards] = useState(initialCardImage.map((card) => ({ ...card, flipped: false })));
+
+  const flipCard = (index) => {
+    setCards((prevCards) =>
+      prevCards.map((card, i) => (i === index ? { ...card, flipped: !card.flipped } : card))
+    );
+  };
+
   return (
     <section>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-        {cardImage.map((card, index) => (
-          <ImageComposant
-            key={index}
-            nameCard={card.nameCard} // ou "back" si tu veux que toutes soient face cachée
-            flipped={false} // ou true pour la face visible
-          />
+        {cards.map((card, index) => (
+          <div key={index}>
+            <ImageComposant
+              nameCard={card.nameCard}
+              flipped={card.flipped}
+              onClick={() => flipCard(index)}
+            />
+          </div>
         ))}
       </div>
     </section>

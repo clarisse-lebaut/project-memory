@@ -11,6 +11,7 @@ const nameCard = [
   "doctor-8",
   "doctor-9",
   "doctor-10",
+  "doctor-11",
   "doctor-12",
   "doctor-13",
 ];

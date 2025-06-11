@@ -10,6 +10,7 @@ const duplicateCard = (cards, count = numberDuplication) =>
 function CardBoard() {
   const [cards, setCards] = useState(duplicateCard(initialCardImage, numberDuplication));
   const [disable, setDisable] = useState(false);
+  const [selected, setSelected] = useState([]);
 
   const flipCard = (index) => {
     if (disable) return;
@@ -52,6 +53,16 @@ function CardBoard() {
     setCards(duplicateCard(initialCardImage, numberDuplication));
   };
 
+  const selectCard = (card) => {
+    setSelected(card);
+    console.log(card.nameCard);
+  };
+
+  const handleClick = (index, card) => {
+    flipCard(index);
+    selectCard(card);
+  };
+
   return (
     <section>
       <Button text="Commencer une nouvelle partie" onClick={schuffleCards} />
@@ -65,7 +76,7 @@ function CardBoard() {
             <ImageComposant
               nameCard={card.nameCard}
               flipped={card.flipped}
-              onClick={() => flipCard(index)}
+              onClick={() => handleClick(index, card)}
             />
           </div>
         ))}

@@ -3,7 +3,12 @@ import ImageComposant from "../cards/imgComposants";
 import { cardImage as initialCardImage } from "../services/imageCardService";
 
 function CardBoard() {
-  const [cards, setCards] = useState(initialCardImage.map((card) => ({ ...card, flipped: false })));
+  const [cards, setCards] = useState(
+    initialCardImage.flatMap((card) => [
+      { ...card, flipped: false },
+      { ...card, flipped: false },
+    ])
+  );
 
   const flipCard = (index) => {
     setCards((prevCards) =>

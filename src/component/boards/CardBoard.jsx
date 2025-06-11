@@ -48,11 +48,16 @@ function CardBoard() {
     setDisable(true);
   };
 
+  const rebootGameSession = () => {
+    setCards(duplicateCard(initialCardImage, numberDuplication));
+  };
+
   return (
     <section>
       <Button text="Commencer une nouvelle partie" onClick={schuffleCards} />
       <Button text="Stoper tout, j'en ai marre." onClick={cancelGame} />
       <Button text="Un coup de main ?" onClick={seeCards} />
+      <Button text="Reboot la session de jeu" onClick={rebootGameSession} />
 
       <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
         {cards.map((card, index) => (

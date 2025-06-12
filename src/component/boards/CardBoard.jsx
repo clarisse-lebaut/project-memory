@@ -1,11 +1,8 @@
 import { useState } from "react";
-import ImageComposant from "../cards/imgComposants";
 import { cardImage as initialCardImage } from "../services/imageCardService";
+import { duplicateCard, numberDuplication } from "../services/optionsGame";
+import ImageComposant from "../cards/imgComposants";
 import Button from "../global/Button";
-
-const numberDuplication = 2;
-const duplicateCard = (cards, count = numberDuplication) =>
-  cards.flatMap((card) => Array.from({ length: count }, () => ({ ...card, flipped: true })));
 
 function CardBoard() {
   const [cards, setCards] = useState(duplicateCard(initialCardImage, numberDuplication));

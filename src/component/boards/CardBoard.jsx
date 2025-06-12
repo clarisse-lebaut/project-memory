@@ -54,8 +54,30 @@ function CardBoard() {
   };
 
   const selectCard = (card) => {
-    setSelected(card);
     console.log(card.nameCard);
+
+    setSelected((prevSelectedCards) => {
+      const newSelectedCards = [...prevSelectedCards, card];
+
+      if (newSelectedCards.length === numberDuplication) {
+        compareCards(newSelectedCards);
+        // Réinitialiser les cartes sélectionnées après la comparaison
+        return [];
+      }
+      return newSelectedCards;
+    });
+  };
+
+  const compareCards = (card) => {
+    if (card[0].nameCard === card[1].nameCard) {
+      console.log("Il faut que les cartes restent de face.");
+    } else {
+      console.log("Il faut que les cartes se retournent.");
+      setTimeout(
+        () => setCards((prevCards) => prevCards.map((card) => ({ ...card, flipped: false }))),
+        1000
+      );
+    }
   };
 
   const handleClick = (index, card) => {

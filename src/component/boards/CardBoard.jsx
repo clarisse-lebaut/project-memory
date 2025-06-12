@@ -18,11 +18,11 @@ function CardBoard() {
   };
 
   const schuffleCards = () => {
-    const schuffleCards = [...cards]
+    const shuffled = [...cards]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random(), flipped: false }));
 
-    setCards(schuffleCards);
+    setCards(shuffled);
     setDisable(false);
     setGameStarted(true);
   };
